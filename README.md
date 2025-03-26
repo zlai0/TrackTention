@@ -10,11 +10,11 @@ Visual Geometry Group, University of Oxford
 
 ## 🧠 Summary
 
-**Tracktention** is a novel architectural module that improves temporal consistency in video tasks like depth estimation and colorization. It leverages modern point trackers to explicitly align features across frames using **Tracktention** — converting powerful image-based models into robust, temporally aware video models with minimal overhead.
+**Tracktention** is a novel architectural module that improves temporal consistency in video tasks like depth estimation and colorization. It leverages modern point trackers to explicitly align features across frames using attention — converting powerful image-based models into robust, temporally aware video models with minimal overhead.
 
 ## 🔧 Features
 
-- **Tracktention Layer**: Enhances any ViT/ConvNet with motion-aware temporal reasoning.
+- **Tracktention Layer**: Enhances existing ViT/ConvNet with motion-aware temporal reasoning.
 - **Plug-and-Play**: Easily integrates into existing models like `Depth Anything`.
 - **Lightweight**: Only ~17M additional parameters with minimal runtime overhead.
 - **State-of-the-Art**: Outperforms leading video models in depth prediction and video colorization benchmarks.
