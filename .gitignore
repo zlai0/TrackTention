@@ -1,0 +1,88 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.env
+.venv/
+env/
+venv/
+
+# Virtualenv
+ENV/
+env.bak/
+venv.bak/
+
+# Logs
+*.log
+
+# Mac system files
+.AppleDouble
+.LSOverride
+Icon
+
+# VS Code
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Build output
+dist/
+build/
+out/
+
+# Coverage reports
+coverage/
+*.cover
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.prof
+*.egg
+
+# Test cache
+.pytest_cache/
+
+# Static site stuff
+*.html
+*.css
+*.js.map
+
+# Environment settings
+.env.local
+.env.*.local
+
+# GitHub Pages
+docs/.DS_Store
+
+# Compiled files
+*.class
+*.o
+*.so
+
+# Temporary files
+*.swp
+*.tmp
+*.bak
+*.orig
+*~
+
+# By package managers
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
