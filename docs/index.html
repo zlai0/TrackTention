@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Tracktention: Leveraging Point Tracking to Attend Videos Faster and Better</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1711">
+    <meta property="og:image:height" content="576">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zlai0.github.io/Tracktention" />
+    <meta property="og:title" content="Tracktention: Leveraging Point Tracking to Attend Videos Faster and Better" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tracktention: Leveraging Point Tracking to Attend Videos Faster and Better" />
+    <meta name="twitter:description"
+        content="" />
+
+    <link rel="icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+    <!-- Google tag (gtag.js) -->
+     <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TDNKRKX3');</script>
+    <!-- End Google Tag Manager -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    <script defer src="js/fontawesome.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <script src="js/app.js"></script>
+    <script src="js/synced_video_selector.js"></script>
+
+    <script type="module">
+        import { createSplatView, setSplatScene, setupCarousel } from "./js/splats.js"
+        setupCarousel(createSplatView("splat-picker"), document.querySelector("#splat-carousel"));
+    </script>
+    <style>
+        .final-element {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body style="padding: 5%; padding-top: min(15px, 5%); padding-bottom: min(5px, 5%); width: 100%">
+    <div class="container-lg text-center" style="max-width: 1500px; margin: auto;" id="main">
+        <header role="banner">
+            <!-- <div class="container" id="main"> -->
+            <div class="row">
+                <h2 class="col-md-12 text-center">
+                    <b>Tracktention</b> : Leveraging Point Tracking to Attend Videos Faster and Better
+                </br>
+                </h2>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-3">
+                </div>
+                <div class="container-fluid text-center">
+                    <ul class="list-inline" style="white-space: nowrap; margin:0px 0px 0px 0px;" >
+                        <li><a style="font-size: calc(min(3vw, 15px))" href="https://scholar.google.com/citations?user=31eXgMYAAAAJ&hl=en">Zihang Lai</a>
+                        </li>
+                        <li><a style="font-size: calc(min(3vw, 15px))" href="https://www.robots.ox.ac.uk/~vedaldi/">Andrea Vedaldi</a>
+                    </ul>
+                </div>
+                <div class="col-md-12 text-center" style="font-size: calc(min(3vw, 15px))">
+            Visual Geometry Group (VGG), Oxford University
+                </div>
+	        <div class="col-md-12 text-center" style="font-size: calc(min(3vw, 15px))">
+			<b>CVPR 2025</b>
+		</div>
+            </div>
+            <div class="row text-center">
+                <span class="link-block" style="padding-top: 10px; padding-bottom: 10px">
+                    <a href="https://arxiv.org/abs/2503.19904" class="external-link button is-normal is-rounded is-dark"
+                        style="width: 80px; font-size: 15px">
+                        <span class="icon">
+                            <i class="ai ai-arxiv"></i>
+                        </span>
+                        <span>Arxiv</span>
+                    </a>
+                    <a href="https://github.com/zlai0/TrackTention" class="external-link button is-normal is-rounded is-dark"
+                    style="width: 80px; font-size: 15px">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                </a>
+
+                </span>
+            </div>
+        </header>
+
+        <main role="main">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <video id="co3d-grid"  width="100%" autoplay loop muted controls playsinline>
+					  <source src="videos/teaser.mp4" type="video/mp4"></source>
+                        Result of Tracktention. The method is able to enhance temporal consistency in video models.
+                    </video>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 offset-md-2 rounded" style="text-align: center; padding-bottom: 0px; padding-top: 5px; background-color: #d0d5ec;">
+                    <h6 style="text-align: center; color:rgb(0, 0, 0)"><strong>TL;DR</strong>: A novel architectural component designed to enhance temporal consistency in video models.</h6>
+                </div>
+            </div><br><br>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <h3> How it works </h3>
+                    <p class="text-justify" style="text-align: left;">
+                        (1) We first <span style="color: rgb(72, 159, 248);"><b>sample</b></span> video features, converting them into a set of track tokens. (2) These
+                        tokens are then processed by the Track Transformer module, which <span style="color: rgb(240, 152, 55);"><b>updates</b></span> them over time by propagating and smoothing information
+                        along the tracks, enabling robust video representations. (3) Finally, the refined track features are <span style="color: rgb(218, 59, 38);"><b>splatted</b></span> back into the video feature space.
+                        By explicitly incorporating motion information through point tracks, our approach improves temporal alignment, effectively captures
+                        complex object movements, and ensures stable feature representations across time.                    </p>
+                    <video muted loop autoplay src="videos/howitworks.mp4" style="max-width:878px" width=100%>
+                        An animated diagram briefly describing the method.
+                    </video>
+                </div>
+            </div><br><br>
+
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <h3>
+                        Comparisons to other methods
+                    </h3>
+
+                    <p class="text-justify" style="text-align: left;">
+                        Compare the results of our method Tracktention (right) with baseline methods (left). 
+                    </p>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                        <h5>Video Depth Estmiation</h5>
+    
+                        </div>
+                        
+   
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+
+                        <video id="co3d-grid"  width="100%" autoplay loop muted controls playsinline>
+                            <source src="videos/results1.mp4" type="video/mp4"></source>
+                            Result of Tracktention. The method is able to enhance temporal consistency in video models.
+                        </video>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    
+
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                        <h5>Automatic Video Colorization</h5>
+    
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+
+                        <video id="co3d-grid"  width="100%" autoplay loop muted controls playsinline>
+                            <source src="videos/results2.mp4" type="video/mp4"></source>
+                            Result of Tracktention. The method is able to enhance temporal consistency in video models.
+                        </video>
+                        </div>
+                    </div>
+
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <h3> Method overview </h3>
+                    <image width=100% src="img/method.png"
+                        alt="A diagram explaining the method in broad strokes, like explained in the caption."></image>
+
+                    <figcaption class="text-justify margin-5" style="text-align: left;">
+                        Left: the <b>Tracktention architecture</b> comprises Attentional Sampling, pooling information from images to track, Track Transformer, processing this information temporarily, and Attentional Splatting, moving the processed information back to the images. Right:
+                        Tracktention is easily <b>integrated</b> in ViTs and ConvNets to make video networks out image ones.                    </p>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="col-md-8 offset-md-2 text-start">
+                <h4>
+                    Video Introduction
+                </h4>
+            </div>
+            <div class="col-md-8 offset-md-2">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/xuEM_Y4MO6E?si=La_4h8X7gVIvGC-T" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <br>
+            <br>
+
+            <div class="col-md-8 offset-md-2 text-start">
+                <h4>
+                    Acknowledgements
+                </h4>
+
+                <p class="text-justify" style="text-align: left;">
+                    The authors of this work were supported by ERC 101001212-UNION.
+
+                    <br><br><br>
+                </p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-5 center text-start">
+                    <label style="display: inline" for="bibtex">
+                        <h4 style="text-align: center">BibTeX </h4>
+                    </label>
+                    <textarea id="bibtex" class="form-control" readonly>
+@inproceedings{lai25tracktention:,
+    author = {Zihang Lai and Andrea Vedaldi},
+    booktitle = {Proceedings of the {IEEE} Conference on Computer Vision and Pattern Recognition ({CVPR})},
+    title = {Tracktention: Leveraging Point Tracking to Attend Videos Faster and Better},
+    year = {2025}
+}
+                                                   </textarea>
+                </div>
+            </div>
+
+        </main>
+        <footer>
+            <div class="row">
+                <div class="col-md-8 offset-md-2 text-start">
+
+                    <p class="text-justify" style="text-align: left;">
+                        <i>
+                            The website template was borrowed from <a href="http://cat3d.github.io/">CAT3D</a>, <a href="http://mgharbi.com/">Michaël Gharbi</a>,
+                            <a href="https://dorverbin.github.io/refnerf">Ref-NeRF</a>, and <a
+                                href="https://reconfusion.github.io">ReconFusion</a>.
+                        </i>
+                    </p>
+                </div>
+            </div>
+
+        </footer>
+    </div>
+</body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDNKRKX3"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+</html>

@@ -57,10 +57,6 @@ coverage/
 # Test cache
 .pytest_cache/
 
-# Static site stuff
-*.html
-*.css
-*.js.map
 
 # Environment settings
 .env.local
