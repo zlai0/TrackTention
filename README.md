@@ -1,5 +1,9 @@
 # Tracktention: Leveraging Point Tracking to Attend Videos Faster and Better
 
+[Zihang Lai](https://scholar.google.com/citations?user=31eXgMYAAAAJ&hl=en), [Andrea Vedaldi](http://www.robots.ox.ac.uk/~vedaldi/)  
+Visual Geometry Group, University of Oxford
+
+
 ![Tracktention Overview](assets/tracktention_overview.png)
 
 > A plug-and-play transformer layer to turn image-based models into state-of-the-art video models using point tracking.
